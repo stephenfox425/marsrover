@@ -1,4 +1,4 @@
-"# Mars Rover" 
+# Mars Rover #
 
 A program that simulates a pars rover attempting to move around a grid. It can only move on the cardinal directions NESW. Each movement is considered to be the same distance. The rover can only execute the manouvers of:
 - go forwards (1 square)
