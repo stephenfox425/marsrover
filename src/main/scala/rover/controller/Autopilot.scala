@@ -41,14 +41,14 @@ class Autopilot {
   }
 
   def stepBackwards(nodeWithVisitedSet: EndNodeWithVisitedSet, route: List[Position], startPosition: Position): List[Position] = {
-    if(nodeWithVisitedSet.endNode.thisPosition.equals(startPosition)) route.appended(nodeWithVisitedSet.endNode.thisPosition)
+    val thisNode = nodeWithVisitedSet.endNode
+    val newRoute = route.appended(thisNode.thisPosition)
+    if(thisNode.thisPosition.equals(startPosition)) newRoute
     else {
-      val thisNode = nodeWithVisitedSet.endNode
+      val nextToVisit: PositionWithPrevious = nodeWithVisitedSet.visitedSetWP.filter(node => node.thisPosition.equals(thisNode.previousPosition.get)).head
+      val listWithoutNextNode = nodeWithVisitedSet.visitedSetWP.filterNot(node => node.thisPosition.equals(thisNode.previousPosition))
 
-      val nextToVisit: PositionWithPrevious = nodeWithVisitedSet.visitedSetWP.filterNot(node => node.thisPosition.equals(thisNode.previousPosition)).head
-      val listWithoutNextNode = nodeWithVisitedSet.visitedSetWP.filter(node => node.thisPosition.equals(thisNode.previousPosition))
-
-      stepBackwards(EndNodeWithVisitedSet(nextToVisit, listWithoutNextNode), route.appended(thisNode.thisPosition), startPosition)
+      stepBackwards(EndNodeWithVisitedSet(nextToVisit, listWithoutNextNode), newRoute, startPosition)
     }
   }
 
