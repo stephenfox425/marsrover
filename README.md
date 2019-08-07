@@ -9,7 +9,7 @@ Also included is an attempt to implement an autopilot that implements Dijkstra's
 It does this by:
 - getting a set of all available nodes
 - creating sets of visited nodes and unvisited nodes.
-- from a start point, find all the (invisited) neighbours, add them to a set
+- from a start point, find all the (unvisited) neighbours, add them to a set
 - iterate over the neighbours, check if they are the end, if not add them to visited with the "source" node and add their (unvisited) neighbours to the unvisited set
 - continue until the endpoint is found, then stop
 - once the endpoint is found, it and all visited nodes (and where they are sourced from) are used to reverse engineer the fastest route, by taking the endpoint's source node, then its source node, etc.
