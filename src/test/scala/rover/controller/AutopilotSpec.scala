@@ -45,6 +45,16 @@ class AutopilotSpec extends FunSpec with Matchers {
       println("route: " + route)
       route shouldEqual List(startPosition, Position(0,1), Position(0, 2), Position(1, 2), endPosition)
     }
+
+    it("should calculate the correct route of more than 1 step given a grid and start and end position with wrap arounds considered") {
+      val startPosition = Position(0,0)
+      val endPosition = Position(3, 1)
+      val sampleGrid = Grid(3,3)
+      val autopilot = new Autopilot()
+      val route = autopilot.calculate(sampleGrid, startPosition, endPosition)
+      println("route: " + route)
+      route shouldEqual List(startPosition, Position(0,1), endPosition)
+    }
   }
 
 }
